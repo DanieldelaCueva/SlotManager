@@ -1,0 +1,45 @@
+#middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.form-wrapper {
+  border: 2px solid #5fec85;
+  padding-bottom: 1rem;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#login_title {
+  text-align: center;
+  font-size: 24px;
+}
+
+.form_component__label{
+  display: block;
+  text-align: center;
+  margin: 0.5rem auto;
+  font-size: 22px;
+}
+
+.form_component__input {
+  display: block;
+  text-align: center;
+  margin: 0.5rem auto;
+  font-size: 20px;
+  background-color: #000000;
+  border: 1px solid #5fec85;
+  color: #5fec85;
+}
+
+.form_component__input__submit {
+  display: block;
+  text-align: center;
+  margin: 0.5rem auto;
+  font-size: 20px;
+  background-color: #000000;
+  border: 1px solid #5fec85;
+  color: #5fec85;
+  padding: 0.5rem;
+}

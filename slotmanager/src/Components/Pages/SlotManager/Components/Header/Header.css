@@ -1,0 +1,18 @@
+#header{
+    background-color: #434343;
+    color: 	#9c9c9c;
+    font-family: "Roboto Mono", "Helvetica Neue", Helvetica, Arial;
+    min-height: 2rem;
+}
+
+span{
+    margin: 0.35rem 1rem;
+}
+
+#dependency{
+    float:left;
+}
+
+#time{
+    float: right;
+}

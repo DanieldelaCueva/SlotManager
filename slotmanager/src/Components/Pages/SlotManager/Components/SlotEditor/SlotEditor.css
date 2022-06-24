@@ -1,0 +1,35 @@
+#slotEditor__form p{
+    font-family: 'Roboto Mono', sans-serif;
+    color:#9c9c9c;
+    border-bottom: 2px solid #9c9c9c;
+    border-left: 2px solid #9c9c9c;
+    border-right: 2px solid #9c9c9c;
+    margin:0;
+    padding: 0.3% 2%
+    
+}
+
+.dataInput{
+    font-family: 'Roboto ', sans-serif;
+    font-size: 18px;
+    background-color: #000000;
+    color:#5fec85;
+    border: 1px solid #5fec85;
+    text-align: center;
+    width: 8rem
+}
+
+.inputLabel{
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.inputContainer{
+    display: inline-block;
+    width: 8rem;
+    margin: 0 0.5% 1% 0.5%;
+}
