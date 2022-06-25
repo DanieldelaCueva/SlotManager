@@ -1,32 +1,73 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import { useHistory } from "react-router-dom";
 
 const AuthContext = React.createContext({
   userLoggedIn: false,
-  login: (username, password) => {},
-  logout: () => {},
+  userIsAdmin: false,
   private_token: "",
   public_token: "",
+  login: (userData) => {},
+  logout: () => {},
 });
 
 export const AuthContextProvider = (props) => {
-    const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
-    const [publicToken, setPublicToken] = useState("");
+  const [publicToken, setPublicToken] = useState("");
 
-    const [privateToken, setPrivateToken] = useState("");
+  const [privateToken, setPrivateToken] = useState("");
 
-    const loginHandler = (username, password) => {};
+  const history = useHistory();
 
-    const logoutHandler = () => {};
+  const loginHandler = (userData) => {
+    setUserLoggedIn(true);
+    localStorage.setItem("userData", JSON.stringify(userData));
+    history.go(0);
+  };
+
+  const logoutHandler = () => {
+    setUserLoggedIn(false);
+    localStorage.removeItem("userData");
+  };
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("userData");
+    setUserLoggedIn(storedUser);
+  });
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("userData");
+    if (storedUser) {
+      fetch(
+        `http://127.0.0.1:8000/authentication/check-login/${
+          JSON.parse(localStorage.getItem("userData")).username
+        }`
+      )
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then((data) => {
+          if (data["operation_result"] === "false") {
+            logoutHandler();
+          }
+        });
+    }
+  });
 
   return (
     <AuthContext.Provider
       value={{
         userLoggedIn: userLoggedIn,
+        userIsAdmin: localStorage.getItem("userData")
+          ? JSON.parse(localStorage.getItem("userData")).is_admin
+          : false,
         private_token: privateToken,
         public_token: publicToken,
         login: loginHandler,
-        logout: logoutHandler,  
+        logout: logoutHandler,
       }}
     >
       {props.children}
