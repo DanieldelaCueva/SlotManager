@@ -32,7 +32,7 @@ const Login = (props) => {
           setLoginError("Incorrect username or password");
           
         } else if (response.status === 500) {
-          setLoginError("User already logged in");
+          setLoginError("Server error");
         }
       })
       .then((data) => {
