@@ -2,12 +2,15 @@ import "./Login.css";
 
 import AuthContext from "../../../store/auth-context";
 
-import { useRef, useContext } from "react"
+import { useRef, useContext, useState } from "react";
+
 const Login = (props) => {
   const usernameRef = useRef();
   const passwordRef = useRef();
 
   const authCtx = useContext(AuthContext);
+
+  const [loginError, setLoginError] = useState(null);
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
@@ -25,10 +28,15 @@ const Login = (props) => {
       .then((response) => {
         if (response.ok) {
           return response.json();
+        } else if (response.status === 401) {
+          setLoginError("Incorrect username or password");
+          
+        } else if (response.status === 500) {
+          setLoginError("User already logged in");
         }
       })
       .then((data) => {
-        if (data !== "Invalid credentials") {
+        if (data["error"] !== "Invalid credentials") {
           const userData = {
             username: data.username,
             private_token: data.private_token,
@@ -75,6 +83,8 @@ const Login = (props) => {
             className="form_component__input__submit"
           />
         </form>
+
+        {loginError && <span className="form_component__error_message">{loginError}</span>}
       </div>
     </div>
   );

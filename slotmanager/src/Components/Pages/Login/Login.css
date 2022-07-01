@@ -43,3 +43,9 @@
   color: #5fec85;
   padding: 0.5rem;
 }
+
+.form_component__error_message{
+  text-align: center;
+  display: block;
+  padding: 0.5rem;
+}
