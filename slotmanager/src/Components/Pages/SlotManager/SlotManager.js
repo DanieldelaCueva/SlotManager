@@ -2,9 +2,10 @@ import Header from "./Components/Header/Header";
 import SlotEditor from "./Components/SlotEditor/SlotEditor";
 import SlotTable from "./Components/SlotsTable/SlotTable";
 
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import "./SlotManager.css"
+import AuthContext from "../../../store/auth-context";
 
 const storedUser = JSON.parse(localStorage.getItem("userData"));
 
@@ -14,8 +15,10 @@ const slotSocket = new WebSocket(
 
 const SlotManager = () => {
     const [flightList, setFlightList] = useState([]);
+
+    const authCtx = useContext(AuthContext);
     
-    slotSocket.onmessage = function (e) {
+    slotSocket.onmessage = (e) => {
       const data = JSON.parse(e.data);
     
       let newFlightList = JSON.parse(data["slot_list"]);
@@ -39,6 +42,10 @@ const SlotManager = () => {
         setFlightList(updatedFlightList);
       }
     };
+
+    slotSocket.onclose = e => {
+      authCtx.logout();
+    }
 
     return(
         <div id="screen">
