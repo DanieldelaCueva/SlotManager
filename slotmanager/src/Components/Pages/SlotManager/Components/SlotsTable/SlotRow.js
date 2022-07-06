@@ -3,7 +3,7 @@ import "./SlotRow.css"
 const SlotRow = props => {
     return(
         <tr>
-            <td>{props.callsign}</td>
+            <td onClick={props.setSlotEditorFields}>{props.callsign}</td>
             <td><input type="checkbox" className="checkBox" onChange={() => props.clearanceUpdater(props.callsign)} checked={props.cleared}/></td>
             <td>{props.type}</td>
             <td>{props.EOBT}</td>

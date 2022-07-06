@@ -70,6 +70,7 @@ const SlotTable = (props) => {
               TTOT={flight.TTOT}
               ATOT={flight.ATOT}
               clearanceUpdater={updateClearanceState}
+              setSlotEditorFields={() => props.setSlotEditorFields(flight)}
             />
           );
         })}

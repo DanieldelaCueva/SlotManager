@@ -1,16 +1,10 @@
 import "./SlotEditor.css";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const SlotEditor = (props) => {
   const [showForm, setShowForm] = useState(false);
 
-  const callsignInput = useRef();
-  const typeInput = useRef();
-  const EOBTInput = useRef();
-  const TSATInput = useRef();
-  const DESTInput = useRef();
-  const TTOTInput = useRef();
 
   const slotEdit = (event) => {
     event.preventDefault();
@@ -23,25 +17,25 @@ const SlotEditor = (props) => {
         },
       ],
     };
-    dataToSend["slot_list"]["pk"] = callsignInput.current.value.toUpperCase();
+    dataToSend["slot_list"]["pk"] = props.fieldRefs.callsignInput.current.value.toUpperCase();
     dataToSend["slot_list"][0]["fields"]["room_id"] = JSON.parse(localStorage.getItem("userData")).user_room;
     dataToSend["slot_list"][0]["fields"]["callsign"] =
-      callsignInput.current.value.toUpperCase();
-    dataToSend["slot_list"][0]["fields"]["type"] = typeInput.current.value.toUpperCase();
-    dataToSend["slot_list"][0]["fields"]["eobt"] = EOBTInput.current.value;
-    dataToSend["slot_list"][0]["fields"]["tsat"] = TSATInput.current.value;
+    props.fieldRefs.callsignInput.current.value.toUpperCase();
+    dataToSend["slot_list"][0]["fields"]["type"] = props.fieldRefs.typeInput.current.value.toUpperCase();
+    dataToSend["slot_list"][0]["fields"]["eobt"] = props.fieldRefs.EOBTInput.current.value;
+    dataToSend["slot_list"][0]["fields"]["tsat"] = props.fieldRefs.TSATInput.current.value;
     dataToSend["slot_list"][0]["fields"]["destination"] =
-      DESTInput.current.value.toUpperCase();
-    dataToSend["slot_list"][0]["fields"]["ttot"] = TTOTInput.current.value;
+    props.fieldRefs.DESTInput.current.value.toUpperCase();
+    dataToSend["slot_list"][0]["fields"]["ttot"] = props.fieldRefs.TTOTInput.current.value;
 
     props.slotSocket.send(JSON.stringify(dataToSend));
 
-    callsignInput.current.value = "";
-    typeInput.current.value = "";
-    EOBTInput.current.value = "";
-    TSATInput.current.value = "";
-    DESTInput.current.value = "";
-    TTOTInput.current.value = "";
+    props.fieldRefs.callsignInput.current.value = "";
+    props.fieldRefs.typeInput.current.value = "";
+    props.fieldRefs.EOBTInput.current.value = "";
+    props.fieldRefs.TSATInput.current.value = "";
+    props.fieldRefs.DESTInput.current.value = "";
+    props.fieldRefs.TTOTInput.current.value = "";
   };
 
   return (
@@ -72,7 +66,7 @@ const SlotEditor = (props) => {
               name="callsign"
               minLength="5"
               className="dataInput"
-              ref={callsignInput}
+              ref={props.fieldRefs.callsignInput}
               required
             />
           </div>
@@ -86,7 +80,7 @@ const SlotEditor = (props) => {
               minLength="4"
               maxLength="4"
               className="dataInput"
-              ref={typeInput}
+              ref={props.fieldRefs.typeInput}
               required
             />
           </div>
@@ -98,7 +92,7 @@ const SlotEditor = (props) => {
               type="time"
               name="EOBT"
               className="dataInput"
-              ref={EOBTInput}
+              ref={props.fieldRefs.EOBTInput}
               required
             />
           </div>
@@ -110,7 +104,7 @@ const SlotEditor = (props) => {
               type="time"
               name="TSAT"
               className="dataInput"
-              ref={TSATInput}
+              ref={props.fieldRefs.TSATInput}
               required
             />
           </div>
@@ -124,7 +118,7 @@ const SlotEditor = (props) => {
               minLength="4"
               maxLength="4"
               className="dataInput"
-              ref={DESTInput}
+              ref={props.fieldRefs.DESTInput}
               required
             />
           </div>
@@ -136,7 +130,7 @@ const SlotEditor = (props) => {
               type="time"
               name="TTOT"
               className="dataInput"
-              ref={TTOTInput}
+              ref={props.fieldRefs.TTOTInput}
               required
             />
           </div>
