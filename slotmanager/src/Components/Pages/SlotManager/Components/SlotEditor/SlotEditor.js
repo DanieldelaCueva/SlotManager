@@ -24,7 +24,7 @@ const SlotEditor = (props) => {
       ],
     };
     dataToSend["slot_list"]["pk"] = callsignInput.current.value.toUpperCase();
-    dataToSend["slot_list"][0]["fields"]["room_id"] = "test_room";
+    dataToSend["slot_list"][0]["fields"]["room_id"] = JSON.parse(localStorage.getItem("userData")).user_room;
     dataToSend["slot_list"][0]["fields"]["callsign"] =
       callsignInput.current.value.toUpperCase();
     dataToSend["slot_list"][0]["fields"]["type"] = typeInput.current.value.toUpperCase();
@@ -35,6 +35,13 @@ const SlotEditor = (props) => {
     dataToSend["slot_list"][0]["fields"]["ttot"] = TTOTInput.current.value;
 
     props.slotSocket.send(JSON.stringify(dataToSend));
+
+    callsignInput.current.value = "";
+    typeInput.current.value = "";
+    EOBTInput.current.value = "";
+    TSATInput.current.value = "";
+    DESTInput.current.value = "";
+    TTOTInput.current.value = "";
   };
 
   return (
