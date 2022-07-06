@@ -10,43 +10,10 @@ const Login = (props) => {
 
   const authCtx = useContext(AuthContext);
 
-  const [loginError, setLoginError] = useState(null);
-
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
-    fetch("http://127.0.0.1:8000/authentication/login/", {
-      method: "POST",
-      body: JSON.stringify({
-        username: usernameRef.current.value.toUpperCase(),
-        password: passwordRef.current.value,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else if (response.status === 401) {
-          setLoginError("Incorrect username or password");
-          
-        } else if (response.status === 500) {
-          setLoginError("Server error");
-        }
-      })
-      .then((data) => {
-        if (data["error"] !== "Invalid credentials") {
-          const userData = {
-            username: data.username,
-            private_token: data.private_token,
-            public_token: data.public_token,
-            user_room: data.room,
-            is_admin: data.is_admin === "True",
-          };
-          authCtx.login(userData);
-        }
-      });
+    authCtx.login(usernameRef.current.value.toUpperCase(), passwordRef.current.value)
   };
 
   return (
@@ -64,7 +31,7 @@ const Login = (props) => {
             id="username"
             className="form_component__input"
             ref={usernameRef}
-            style={{textTransform: "uppercase"}}
+            style={{ textTransform: "uppercase" }}
             required
           />
 
@@ -86,7 +53,9 @@ const Login = (props) => {
           />
         </form>
 
-        {loginError && <span className="form_component__error_message">{loginError}</span>}
+        {authCtx.loginError && (
+          <span className="form_component__error_message">{authCtx.loginError}</span>
+        )}
       </div>
     </div>
   );
