@@ -18,7 +18,7 @@ const Login = (props) => {
     fetch("http://127.0.0.1:8000/authentication/login/", {
       method: "POST",
       body: JSON.stringify({
-        username: usernameRef.current.value,
+        username: usernameRef.current.value.toUpperCase(),
         password: passwordRef.current.value,
       }),
       headers: {
@@ -61,8 +61,10 @@ const Login = (props) => {
           <input
             type="text"
             name="username"
+            id="username"
             className="form_component__input"
             ref={usernameRef}
+            style={{textTransform: "uppercase"}}
             required
           />
 
