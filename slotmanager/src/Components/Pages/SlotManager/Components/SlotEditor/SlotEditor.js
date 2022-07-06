@@ -64,7 +64,7 @@ const SlotEditor = (props) => {
           }}
         >
           <div className="inputContainer">
-            <label htmlFor="callsign" className="inputLabel">
+            <label htmlFor="callsign" className="inputLabel" style={{marginLeft: "1rem"}}>
               CALLSIGN
             </label>
             <input
