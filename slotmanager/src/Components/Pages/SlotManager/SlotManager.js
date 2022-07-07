@@ -7,10 +7,12 @@ import { useState, useContext, useRef } from "react";
 import "./SlotManager.css";
 import AuthContext from "../../../store/auth-context";
 
+import { WEB_SOCKET_ENDPOINT } from "../../../config";
+
 const storedUser = JSON.parse(localStorage.getItem("userData"));
 
 const slotSocket = new WebSocket(
-  `ws://127.0.0.1:8000/slotstreamer/${storedUser ? storedUser.user_room : ""}/${
+  `${WEB_SOCKET_ENDPOINT}/slotstreamer/${storedUser ? storedUser.user_room : ""}/${
     storedUser ? storedUser.public_token : ""
   }`
 );

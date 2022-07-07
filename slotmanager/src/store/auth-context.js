@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import { useHistory } from "react-router-dom";
+
+import { API_ENDPOINT } from "../config";
 
 const AuthContext = React.createContext({
   userLoggedIn: false,
@@ -24,7 +26,7 @@ export const AuthContextProvider = (props) => {
   const history = useHistory();
 
   const loginHandler = (username, password) => {
-    fetch("http://127.0.0.1:8000/authentication/login/", {
+    fetch(`${API_ENDPOINT}/authentication/login/`, {
       method: "POST",
       body: JSON.stringify({
         username: username,
@@ -62,7 +64,7 @@ export const AuthContextProvider = (props) => {
   };
 
   const logoutHandler = () => {
-    fetch("http://127.0.0.1:8000/authentication/logout/", {
+    fetch(`${API_ENDPOINT}/authentication/logout/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -93,7 +95,7 @@ export const AuthContextProvider = (props) => {
     const storedUser = localStorage.getItem("userData");
     if (storedUser) {
       fetch(
-        `http://127.0.0.1:8000/authentication/check-login/${
+        `${API_ENDPOINT}/authentication/check-login/${
           JSON.parse(localStorage.getItem("userData")).username
         }`
       )

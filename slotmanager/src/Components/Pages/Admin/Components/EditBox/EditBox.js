@@ -2,6 +2,8 @@ import "./EditBox.css";
 
 import { useRef } from "react";
 
+import { API_ENDPOINT } from "../../../../../config";
+
 const EditBox = props => {
   const slotUrlRef = useRef();
 
@@ -13,7 +15,7 @@ const EditBox = props => {
     if (url === "") {
       alert("Error: empty URL");
     } else {
-      fetch("http://127.0.0.1:8000/authentication/user-upload/", {
+      fetch(`${API_ENDPOINT}/authentication/user-upload/`, {
         method: "POST",
         body: JSON.stringify({
           room: props.selectedSession,
@@ -47,7 +49,7 @@ const EditBox = props => {
     if (url === "") {
       alert("Error: empty URL");
     } else {
-      fetch("http://127.0.0.1:8000/authentication/user-delete/", {
+      fetch(`${API_ENDPOINT}/authentication/user-delete/`, {
         method: "POST",
         body: JSON.stringify({
           room: props.selectedSession,
@@ -81,7 +83,7 @@ const EditBox = props => {
     if (url === "") {
       alert("Error: Empty URL");
     } else {
-      fetch("http://127.0.0.1:8000/slotstreamer/slot-upload/", {
+      fetch(`${API_ENDPOINT}/slotstreamer/slot-upload/`, {
         method: "POST",
         body: JSON.stringify({
           room: props.selectedSession,
@@ -115,7 +117,7 @@ const EditBox = props => {
     if (url === "") {
       alert("Error: Empty URL");
     } else {
-      fetch("http://127.0.0.1:8000/slotstreamer/slot-delete/", {
+      fetch(`${API_ENDPOINT}/slotstreamer/slot-delete/`, {
         method: "POST",
         body: JSON.stringify({
           room: props.selectedSession,

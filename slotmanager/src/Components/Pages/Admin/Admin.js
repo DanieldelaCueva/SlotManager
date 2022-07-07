@@ -10,6 +10,8 @@ import { useState, useEffect } from "react";
 import SlotBay from "./Components/SlotBay/SlotBay";
 import EditBox from "./Components/EditBox/EditBox";
 
+import { API_ENDPOINT } from "../../../config";
+
 const Admin = () => {
   const [sessionList, setSessionList] = useState([]);
 
@@ -20,7 +22,7 @@ const Admin = () => {
   const [selectedSession, setSelectedSession] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/slotstreamer/get-sessions", {
+    fetch(`${API_ENDPOINT}/slotstreamer/get-sessions`, {
       headers: {
         Authorization: `Token ${
           JSON.parse(localStorage.getItem("userData")).private_token
@@ -39,7 +41,7 @@ const Admin = () => {
 
   const getUsersBySession = (session_id) => {
     fetch(
-      `http://127.0.0.1:8000/slotstreamer/get-users-by-session/${session_id}`,
+      `${API_ENDPOINT}/slotstreamer/get-users-by-session/${session_id}`,
       {
         headers: {
           Authorization: `Token ${
@@ -60,7 +62,7 @@ const Admin = () => {
 
   const getSlotsBySession = (session_id) => {
     fetch(
-      `http://127.0.0.1:8000/slotstreamer/get-slots-by-session/${session_id}`,
+      `${API_ENDPOINT}/slotstreamer/get-slots-by-session/${session_id}`,
       {
         headers: {
           Authorization: `Token ${
