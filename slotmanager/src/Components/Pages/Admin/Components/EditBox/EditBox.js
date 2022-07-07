@@ -10,121 +10,137 @@ const EditBox = () => {
   const userUploadHandler = (event) => {
     const url = userUrlRef.current.value;
 
-    fetch("http://127.0.0.1:8000/authentication/user-upload/", {
-      method: "POST",
-      body: JSON.stringify({
-        room: "test_room",
-        user_file_url: url,
-      }),
-      headers: {
-        Authorization: `Token ${
-          JSON.parse(localStorage.getItem("userData")).private_token
-        }`,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else if (response.status === 404) {
-          alert("Error: File not found");
-        } else if (response.status === 406) {
-          alert("Error: File is not .csv");
-        }
+    if (url === "") {
+      alert("Error: empty URL");
+    } else {
+      fetch("http://127.0.0.1:8000/authentication/user-upload/", {
+        method: "POST",
+        body: JSON.stringify({
+          room: "test_room",
+          user_file_url: url,
+        }),
+        headers: {
+          Authorization: `Token ${
+            JSON.parse(localStorage.getItem("userData")).private_token
+          }`,
+          "Content-Type": "application/json",
+        },
       })
-      .then((data) => {
-        userUrlRef.current.value = "";
-      });
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else if (response.status === 404) {
+            alert("Error: File not found");
+          } else if (response.status === 406) {
+            alert("Error: File is not .csv");
+          }
+        })
+        .then((data) => {
+          userUrlRef.current.value = "";
+        });
+    }
   };
 
   const userDeleteHandler = (event) => {
     const url = userUrlRef.current.value;
 
-    fetch("http://127.0.0.1:8000/authentication/user-delete/", {
-      method: "POST",
-      body: JSON.stringify({
-        room: "test_room",
-        user_file_url: url,
-      }),
-      headers: {
-        Authorization: `Token ${
-          JSON.parse(localStorage.getItem("userData")).private_token
-        }`,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else if (response.status === 404) {
-          alert("Error: File not found");
-        } else if (response.status === 406) {
-          alert("Error: File is not .csv");
-        }
+    if (url === "") {
+      alert("Error: empty URL");
+    } else {
+      fetch("http://127.0.0.1:8000/authentication/user-delete/", {
+        method: "POST",
+        body: JSON.stringify({
+          room: "test_room",
+          user_file_url: url,
+        }),
+        headers: {
+          Authorization: `Token ${
+            JSON.parse(localStorage.getItem("userData")).private_token
+          }`,
+          "Content-Type": "application/json",
+        },
       })
-      .then((data) => {
-        userUrlRef.current.value = "";
-      });
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else if (response.status === 404) {
+            alert("Error: File not found");
+          } else if (response.status === 406) {
+            alert("Error: File is not .csv");
+          }
+        })
+        .then((data) => {
+          userUrlRef.current.value = "";
+        });
+    }
   };
 
   const slotUploadHandler = (event) => {
     const url = slotUrlRef.current.value;
 
-    fetch("http://127.0.0.1:8000/slotstreamer/slot-upload/", {
-      method: "POST",
-      body: JSON.stringify({
-        room: "test_room",
-        slot_file_url: url,
-      }),
-      headers: {
-        Authorization: `Token ${
-          JSON.parse(localStorage.getItem("userData")).private_token
-        }`,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else if (response.status === 404) {
-          alert("Error: File not found");
-        } else if (response.status === 406) {
-          alert("Error: File is not .csv");
-        }
+    if (url === "") {
+      alert("Error: Empty URL");
+    } else {
+      fetch("http://127.0.0.1:8000/slotstreamer/slot-upload/", {
+        method: "POST",
+        body: JSON.stringify({
+          room: "test_room",
+          slot_file_url: url,
+        }),
+        headers: {
+          Authorization: `Token ${
+            JSON.parse(localStorage.getItem("userData")).private_token
+          }`,
+          "Content-Type": "application/json",
+        },
       })
-      .then((data) => {
-        slotUrlRef.current.value = "";
-      });
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else if (response.status === 404) {
+            alert("Error: File not found");
+          } else if (response.status === 406) {
+            alert("Error: File is not .csv");
+          }
+        })
+        .then((data) => {
+          slotUrlRef.current.value = "";
+        });
+    }
   };
 
   const slotDeleteHandler = (event) => {
     const url = slotUrlRef.current.value;
 
-    fetch("http://127.0.0.1:8000/slotstreamer/slot-delete/", {
-      method: "POST",
-      body: JSON.stringify({
-        room: "test_room",
-        slot_file_url: url,
-      }),
-      headers: {
-        Authorization: `Token ${
-          JSON.parse(localStorage.getItem("userData")).private_token
-        }`,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else if (response.status === 404) {
-          alert("Error: File not found");
-        } else if (response.status === 406) {
-          alert("Error: File is not .csv");
-        }
+    if (url === "") {
+      alert("Error: Empty URL");
+    } else {
+      fetch("http://127.0.0.1:8000/slotstreamer/slot-delete/", {
+        method: "POST",
+        body: JSON.stringify({
+          room: "test_room",
+          slot_file_url: url,
+        }),
+        headers: {
+          Authorization: `Token ${
+            JSON.parse(localStorage.getItem("userData")).private_token
+          }`,
+          "Content-Type": "application/json",
+        },
       })
-      .then((data) => {
-        slotUrlRef.current.value = "";
-      });
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else if (response.status === 404) {
+            alert("Error: File not found");
+          } else if (response.status === 406) {
+            alert("Error: File is not .csv");
+          }
+        })
+        .then((data) => {
+          slotUrlRef.current.value = "";
+        });
+    }
   };
 
   return (
