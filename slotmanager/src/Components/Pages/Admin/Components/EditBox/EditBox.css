@@ -8,7 +8,7 @@
     margin: 2rem;
 }
 
-input{
+#userUrl, #slotUrl{
     margin: 0 2rem; 
     font-size: 22px;
     font-family: 'Roboto ', sans-serif;
