@@ -1,0 +1,33 @@
+.edit_box{
+    border: 1px solid #9c9c9c;
+    font-size: 22px;
+    margin: 4rem 10rem;
+}
+
+.input-wrapper{
+    margin: 2rem;
+}
+
+input{
+    margin: 0 2rem; 
+    font-size: 22px;
+    font-family: 'Roboto ', sans-serif;
+    background-color: #000000;
+    color:#5fec85;
+    border: 1px solid #5fec85;
+    width: 80%
+}
+
+.header{
+    margin: 0 2rem; 
+}
+
+.header p{
+    font-size: 18px;
+}
+
+.url-error-message{
+    display:block;
+    text-align: center;
+    font-size: 18px;
+}

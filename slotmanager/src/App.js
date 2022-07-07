@@ -2,8 +2,6 @@ import "./App.css";
 
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { Container } from "react-bootstrap";
-
 import SlotManager from "./Components/Pages/SlotManager/SlotManager";
 import Login from "./Components/Pages/Login/Login";
 
@@ -20,7 +18,7 @@ function App() {
       {!authCtx.userLoggedIn && (
         <Route path="/login">
           <CustomContainer>
-            <Container
+            <div
               style={{
                 display: "table",
                 position: "absolute",
@@ -31,7 +29,7 @@ function App() {
               }}
             >
               <Login />
-            </Container>
+            </div>
           </CustomContainer>
         </Route>
       )}
@@ -39,11 +37,11 @@ function App() {
       {authCtx.userLoggedIn && !authCtx.userIsAdmin && (
         <Route path="/slot-board">
           <CustomContainer>
-            <Container
+            <div
               style={{ padding: "0rem 10rem 0rem 10rem", minHeight: "100%" }}
             >
               <SlotManager />
-            </Container>
+            </div>
           </CustomContainer>
         </Route>
       )}
@@ -51,7 +49,7 @@ function App() {
       {authCtx.userLoggedIn && authCtx.userIsAdmin && (
         <Route path="/admin">
           <div className="App">
-            <Container
+            <div
               style={{
                 display: "table",
                 position: "absolute",
@@ -62,7 +60,7 @@ function App() {
               }}
             >
               <Admin />
-            </Container>
+            </div>
           </div>
         </Route>
       )}

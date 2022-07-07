@@ -1,0 +1,25 @@
+.session_bay{
+    border: 1px solid #9c9c9c;
+    width: 100%;
+    font-size: 22px;
+}
+
+.admin-table-thead{
+    border-bottom: 1px solid #9c9c9c;
+    font-size: 26px;
+}
+
+.admin-table-th{
+    font-family: 'Roboto Mono', sans-serif;
+    color:#9c9c9c;
+    border-bottom: 2px solid #9c9c9c;
+}
+
+.session_row{
+    border: 1px solid #9c9c9c;
+}
+
+.session_row:hover{
+    border: 3px solid #9c9c9c;
+    font-weight: bold;
+}
