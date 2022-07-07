@@ -148,7 +148,7 @@ const EditBox = props => {
       <div className="header">
         <h4>EDIT SLOTS AND USERS</h4>
         <p>
-          Enter the url of a .csv file containing the slots or users you wish to
+          Enter the dowload url of a .csv file containing the slots or users you wish to
           edit
         </p>
       </div>
