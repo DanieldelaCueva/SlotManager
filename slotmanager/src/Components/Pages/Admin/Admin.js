@@ -17,6 +17,8 @@ const Admin = () => {
 
   const [slotList, setSlotList] = useState([]);
 
+  const [selectedSession, setSelectedSession] = useState(null);
+
   useEffect(() => {
     fetch("http://127.0.0.1:8000/slotstreamer/get-sessions", {
       headers: {
@@ -91,6 +93,7 @@ const Admin = () => {
             itemList={sessionList}
             getUsersBySession={getUsersBySession}
             getSlotsBySession={getSlotsBySession}
+            setSelectedSession={setSelectedSession}
           ></SessionBay>
         </div>
         <div
@@ -110,7 +113,7 @@ const Admin = () => {
         </div>
       </div>
       <LogoutIcon />
-      <EditBox />
+      {selectedSession && <EditBox selectedSession={selectedSession}/>}
     </div>
   );
 };

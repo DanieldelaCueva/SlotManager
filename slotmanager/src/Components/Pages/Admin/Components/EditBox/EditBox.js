@@ -2,7 +2,7 @@ import "./EditBox.css";
 
 import { useRef } from "react";
 
-const EditBox = () => {
+const EditBox = props => {
   const slotUrlRef = useRef();
 
   const userUrlRef = useRef();
@@ -16,7 +16,7 @@ const EditBox = () => {
       fetch("http://127.0.0.1:8000/authentication/user-upload/", {
         method: "POST",
         body: JSON.stringify({
-          room: "test_room",
+          room: props.selectedSession,
           user_file_url: url,
         }),
         headers: {
@@ -50,7 +50,7 @@ const EditBox = () => {
       fetch("http://127.0.0.1:8000/authentication/user-delete/", {
         method: "POST",
         body: JSON.stringify({
-          room: "test_room",
+          room: props.selectedSession,
           user_file_url: url,
         }),
         headers: {
@@ -84,7 +84,7 @@ const EditBox = () => {
       fetch("http://127.0.0.1:8000/slotstreamer/slot-upload/", {
         method: "POST",
         body: JSON.stringify({
-          room: "test_room",
+          room: props.selectedSession,
           slot_file_url: url,
         }),
         headers: {
@@ -118,7 +118,7 @@ const EditBox = () => {
       fetch("http://127.0.0.1:8000/slotstreamer/slot-delete/", {
         method: "POST",
         body: JSON.stringify({
-          room: "test_room",
+          room: props.selectedSession,
           slot_file_url: url,
         }),
         headers: {

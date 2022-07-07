@@ -14,6 +14,7 @@ const SessionBay = (props) => {
             <td onClick={() => {
               props.getUsersBySession(item.room_id)
               props.getSlotsBySession(item.room_id)
+              props.setSelectedSession(item.room_id)
             }}>{item.session_name}</td>
           </tr>
         ))}
