@@ -50,7 +50,8 @@ const SlotManager = () => {
     }
 
     if (updatedFlightList !== flightList) {
-      setFlightList(updatedFlightList);
+      const sortedList = updatedFlightList.sort((a,b) => a.TTOT.localeCompare(b.TTOT))
+      setFlightList(sortedList);
     }
   };
 
