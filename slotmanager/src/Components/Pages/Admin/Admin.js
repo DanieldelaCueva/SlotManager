@@ -111,7 +111,7 @@ const Admin = () => {
           marginRight: "10rem",
           marginLeft: "2rem"
         }}>
-          <SlotBay itemList={slotList}></SlotBay>
+          <SlotBay itemList={slotList.sort((a,b) => a.ttot.localeCompare(b.ttot))}></SlotBay>
         </div>
       </div>
       <LogoutIcon />
