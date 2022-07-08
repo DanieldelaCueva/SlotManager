@@ -21,7 +21,7 @@ const Admin = () => {
 
   const [selectedSession, setSelectedSession] = useState(null);
 
-  useEffect(() => {
+  const updateSessionList = () => {
     fetch(`${API_ENDPOINT}/slotstreamer/get-sessions`, {
       headers: {
         Authorization: `Token ${
@@ -37,19 +37,18 @@ const Admin = () => {
       .then((data) => {
         setSessionList(data);
       });
-  }, []);
+  };
+
+  useEffect(() => updateSessionList(), []);
 
   const getUsersBySession = (session_id) => {
-    fetch(
-      `${API_ENDPOINT}/slotstreamer/get-users-by-session/${session_id}`,
-      {
-        headers: {
-          Authorization: `Token ${
-            JSON.parse(localStorage.getItem("userData")).private_token
-          }`,
-        },
-      }
-    )
+    fetch(`${API_ENDPOINT}/slotstreamer/get-users-by-session/${session_id}`, {
+      headers: {
+        Authorization: `Token ${
+          JSON.parse(localStorage.getItem("userData")).private_token
+        }`,
+      },
+    })
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -61,16 +60,13 @@ const Admin = () => {
   };
 
   const getSlotsBySession = (session_id) => {
-    fetch(
-      `${API_ENDPOINT}/slotstreamer/get-slots-by-session/${session_id}`,
-      {
-        headers: {
-          Authorization: `Token ${
-            JSON.parse(localStorage.getItem("userData")).private_token
-          }`,
-        },
-      }
-    )
+    fetch(`${API_ENDPOINT}/slotstreamer/get-slots-by-session/${session_id}`, {
+      headers: {
+        Authorization: `Token ${
+          JSON.parse(localStorage.getItem("userData")).private_token
+        }`,
+      },
+    })
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -96,6 +92,7 @@ const Admin = () => {
             getUsersBySession={getUsersBySession}
             getSlotsBySession={getSlotsBySession}
             setSelectedSession={setSelectedSession}
+            updateSessionList={updateSessionList}
           ></SessionBay>
         </div>
         <div
@@ -106,16 +103,20 @@ const Admin = () => {
         >
           <UserBay itemList={userList}></UserBay>
         </div>
-        <div style={{
-          width: '30%',
-          marginRight: "10rem",
-          marginLeft: "2rem"
-        }}>
-          <SlotBay itemList={slotList.sort((a,b) => a.ttot.localeCompare(b.ttot))}></SlotBay>
+        <div
+          style={{
+            width: "30%",
+            marginRight: "10rem",
+            marginLeft: "2rem",
+          }}
+        >
+          <SlotBay
+            itemList={slotList.sort((a, b) => a.ttot.localeCompare(b.ttot))}
+          ></SlotBay>
         </div>
       </div>
       <LogoutIcon />
-      {selectedSession && <EditBox selectedSession={selectedSession}/>}
+      {selectedSession && <EditBox selectedSession={selectedSession} />}
     </div>
   );
 };
