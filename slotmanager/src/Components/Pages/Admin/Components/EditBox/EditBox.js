@@ -52,7 +52,6 @@ const EditBox = props => {
       fetch(`${API_ENDPOINT}/authentication/user-delete/`, {
         method: "POST",
         body: JSON.stringify({
-          room: props.selectedSession,
           user_file_url: url,
         }),
         headers: {
