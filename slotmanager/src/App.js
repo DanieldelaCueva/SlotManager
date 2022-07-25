@@ -1,5 +1,3 @@
-import "./App.css";
-
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import SlotManager from "./Components/Pages/SlotManager/SlotManager";
@@ -48,7 +46,7 @@ function App() {
 
       {authCtx.userLoggedIn && authCtx.userIsAdmin && (
         <Route path="/admin">
-          <div className="App">
+          <div>
             <div
               style={{
                 display: "table",
