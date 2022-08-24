@@ -27,7 +27,7 @@ const SlotTable = (props) => {
       ],
     };
     dataToSend["slot_list"]["pk"] = prevList[index].callsign;
-    dataToSend["slot_list"][0]["fields"]["room_id"] = "test_room";
+    dataToSend["slot_list"][0]["fields"]["room_id"] = JSON.parse(localStorage.getItem("userData"))['user_room'];
     dataToSend["slot_list"][0]["fields"]["cleared"] = prevList[index].cleared;
     dataToSend["slot_list"][0]["fields"]["callsign"] = prevList[index].callsign;
     dataToSend["slot_list"][0]["fields"]["type"] = prevList[index].type;
